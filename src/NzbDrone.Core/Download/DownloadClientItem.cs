@@ -1,8 +1,8 @@
 using System;
 using System.Diagnostics;
 using NzbDrone.Common.Disk;
+using NzbDrone.Core.Download.Clients;
 using NzbDrone.Core.Indexers;
-using NzbDrone.Core.ThingiProvider;
 
 namespace NzbDrone.Core.Download
 {
@@ -43,7 +43,7 @@ namespace NzbDrone.Core.Download
 
         public static DownloadClientItemClientInfo FromDownloadClient<TSettings>(
             DownloadClientBase<TSettings> downloadClient, bool hasPostImportCategory)
-            where TSettings : IProviderConfig, new()
+            where TSettings : DownloadClientSettingsBase<TSettings>, new()
         {
             return new DownloadClientItemClientInfo
             {

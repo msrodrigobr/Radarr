@@ -5,9 +5,11 @@ using NLog;
 using NzbDrone.Common.Extensions;
 using NzbDrone.Common.TPL;
 using NzbDrone.Core.Configuration;
+using NzbDrone.Core.Download.Clients;
 using NzbDrone.Core.MediaFiles.Events;
 using NzbDrone.Core.Messaging.Commands;
 using NzbDrone.Core.Messaging.Events;
+using NzbDrone.Core.Notifications.Telegram;
 
 namespace NzbDrone.Core.Download.TrackedDownloads
 {
@@ -70,6 +72,11 @@ namespace NzbDrone.Core.Download.TrackedDownloads
                 foreach (var downloadClient in downloadClients)
                 {
                     var clientTrackedDownloads = ProcessClientDownloads(downloadClient);
+
+                    downloadClientSettings = downloadClient.Definition.Settings as DownloadClientSettingsBase<?>;
+                    {
+
+                    }
 
                     trackedDownloads.AddRange(clientTrackedDownloads.Where(DownloadIsTrackable));
                 }
