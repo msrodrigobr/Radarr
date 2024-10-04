@@ -172,7 +172,15 @@ namespace NzbDrone.Core.Download.Clients.Deluge
                 }
                 else if (torrent.IsFinished && torrent.State != DelugeTorrentStatus.Checking)
                 {
-                    item.Status = DownloadItemStatus.Completed;
+                    // adicionar codigo pra setar o item.Status como ftp
+                    if (Settings.IsSeedbox)
+                    {
+                        item.Status = DownloadItemStatus.Downloading_Seedbox;
+                    }
+                    else
+                    {
+                        item.Status = DownloadItemStatus.Completed;
+                    }
                 }
                 else if (torrent.State == DelugeTorrentStatus.Queued)
                 {

@@ -7,6 +7,7 @@ using NLog;
 using NzbDrone.Common.Disk;
 using NzbDrone.Common.Http;
 using NzbDrone.Core.Configuration;
+using NzbDrone.Core.Download.Clients;
 using NzbDrone.Core.Indexers;
 using NzbDrone.Core.Localization;
 using NzbDrone.Core.Parser.Model;
@@ -19,7 +20,7 @@ using Polly.Retry;
 namespace NzbDrone.Core.Download
 {
     public abstract class DownloadClientBase<TSettings> : IDownloadClient
-        where TSettings : IProviderConfig, new()
+        where TSettings : DownloadClientSettingsBase<TSettings>, new()
     {
         protected readonly IConfigService _configService;
         protected readonly IDiskProvider _diskProvider;
