@@ -15,6 +15,10 @@ namespace NzbDrone.Core.Download
         public int Priority { get; set; } = 1;
         public bool RemoveCompletedDownloads { get; set; } = true;
         public bool RemoveFailedDownloads { get; set; } = true;
+        public bool SeedboxEnabled { get; set; }
+        public string SeedboxFTPHost { get; set; }
+        public string SeedboxFTPUser { get; set; }
+        public string SeedboxFTPPassword { get; set; }
 
         public bool Equals(DownloadClientDefinition other)
         {

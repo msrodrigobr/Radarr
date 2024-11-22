@@ -10,6 +10,10 @@ namespace Radarr.Api.V3.DownloadClient
         public int Priority { get; set; }
         public bool RemoveCompletedDownloads { get; set; }
         public bool RemoveFailedDownloads { get; set; }
+        public bool SeedboxEnabled { get; set; }
+        public string SeedboxFTPHost { get; set; }
+        public string SeedboxFTPUser { get; set; }
+        public string SeedboxFTPPassword { get; set; }
     }
 
     public class DownloadClientResourceMapper : ProviderResourceMapper<DownloadClientResource, DownloadClientDefinition>
@@ -28,6 +32,10 @@ namespace Radarr.Api.V3.DownloadClient
             resource.Priority = definition.Priority;
             resource.RemoveCompletedDownloads = definition.RemoveCompletedDownloads;
             resource.RemoveFailedDownloads = definition.RemoveFailedDownloads;
+            resource.SeedboxEnabled = definition.SeedboxEnabled;
+            resource.SeedboxFTPHost = definition.SeedboxFTPHost;
+            resource.SeedboxFTPUser = definition.SeedboxFTPUser;
+            resource.SeedboxFTPPassword = definition.SeedboxFTPPassword;
 
             return resource;
         }
@@ -46,6 +54,10 @@ namespace Radarr.Api.V3.DownloadClient
             definition.Priority = resource.Priority;
             definition.RemoveCompletedDownloads = resource.RemoveCompletedDownloads;
             definition.RemoveFailedDownloads = resource.RemoveFailedDownloads;
+            definition.SeedboxEnabled = resource.SeedboxEnabled;
+            definition.SeedboxFTPHost =  resource.SeedboxFTPHost;
+            definition.SeedboxFTPUser = resource.SeedboxFTPUser;
+            definition.SeedboxFTPPassword = resource.SeedboxFTPPassword;
 
             return definition;
         }

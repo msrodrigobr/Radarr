@@ -13,8 +13,14 @@ class FieldSet extends Component {
     const {
       size,
       legend,
-      children
+      children,
+      advancedSettings,
+      isAdvanced
     } = this.props;
+
+    if (!advancedSettings && isAdvanced) {
+      return null;
+    }
 
     return (
       <fieldset className={styles.fieldSet}>

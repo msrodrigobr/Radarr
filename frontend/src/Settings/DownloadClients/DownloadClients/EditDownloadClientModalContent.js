@@ -54,7 +54,11 @@ class EditDownloadClientModalContent extends Component {
       removeFailedDownloads,
       fields,
       tags,
-      message
+      message,
+      seedboxEnabled,
+      seedboxFTPHost,
+      seedboxFTPUser,
+      seedboxFTPPassword
     } = item;
 
     return (
@@ -157,6 +161,53 @@ class EditDownloadClientModalContent extends Component {
 
                 <FieldSet
                   size={sizes.SMALL}
+                  legend={translate('DownloadClientSeedboxConfiguration')}
+                  advancedSettings={advancedSettings}
+                  isAdvanced={true}>
+                    <FormGroup>
+                      <FormLabel>{translate('DownloadClientEnableSeedbox')}</FormLabel>
+                      <FormInputGroup
+                        type={inputTypes.CHECK}
+                        name="seedboxEnabled"
+                        helpText={translate('DownloadClientSeeboxEnabledHelp')}
+                        {...seedboxEnabled}
+                        onChange={onInputChange}
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <FormLabel>{translate('DownloadClientSeedboxFTPHost')}</FormLabel>
+                      <FormInputGroup
+                        type={inputTypes.Text}
+                        name="seedboxFTPHost"
+                        helpText={translate('DownloadClientSeedboxFTPHostHelp')}
+                        {...seedboxFTPHost}
+                        onChange={onInputChange}
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <FormLabel>{translate('DownloadClientSeedboxFTPUser')}</FormLabel>
+                      <FormInputGroup
+                        type={inputTypes.Text}
+                        name="seedboxFTPUser"
+                        helpText={translate('DownloadClientSeedboxFTPUserHelp')}
+                        {...seedboxFTPUser}
+                        onChange={onInputChange}
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <FormLabel>{translate('DownloadClientSeedboxFTPPassword')}</FormLabel>
+                      <FormInputGroup
+                        type={inputTypes.Text}
+                        name="seedboxFTPPassword"
+                        helpText={translate('DownloadClientSeedboxFTPPasswordHelp')}
+                        {...seedboxFTPPassword}
+                        onChange={onInputChange}
+                      />
+                    </FormGroup>
+                </FieldSet>
+
+                <FieldSet
+                  size={sizes.SMALL}
                   legend={translate('CompletedDownloadHandling')}
                 >
                   <FormGroup>
@@ -184,6 +235,7 @@ class EditDownloadClientModalContent extends Component {
                           onChange={onInputChange}
                         />
                       </FormGroup>
+
                   }
                 </FieldSet>
               </Form>
