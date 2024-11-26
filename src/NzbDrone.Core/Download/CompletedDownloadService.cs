@@ -33,6 +33,7 @@ namespace NzbDrone.Core.Download
         private readonly IParsingService _parsingService;
         private readonly IMovieService _movieService;
         private readonly ITrackedDownloadAlreadyImported _trackedDownloadAlreadyImported;
+        private readonly ISeedboxFTPService _seedboxFTPService;
         private readonly Logger _logger;
 
         public CompletedDownloadService(IEventAggregator eventAggregator,
@@ -42,6 +43,7 @@ namespace NzbDrone.Core.Download
                                         IParsingService parsingService,
                                         IMovieService movieService,
                                         ITrackedDownloadAlreadyImported trackedDownloadAlreadyImported,
+                                        ISeedboxFTPService seedboxFTPService,
                                         Logger logger)
         {
             _eventAggregator = eventAggregator;
@@ -51,6 +53,7 @@ namespace NzbDrone.Core.Download
             _parsingService = parsingService;
             _movieService = movieService;
             _trackedDownloadAlreadyImported = trackedDownloadAlreadyImported;
+            _seedboxFTPService = seedboxFTPService;
             _logger = logger;
         }
 
@@ -62,6 +65,7 @@ namespace NzbDrone.Core.Download
             }
 
             SetImportItem(trackedDownload);
+            _seedboxFTPService.Check(trackedDownload);
 
             // Only process tracked downloads that are still downloading or have been blocked for importing due to an issue with matching
             if (trackedDownload.State != TrackedDownloadState.Downloading && trackedDownload.State != TrackedDownloadState.ImportBlocked)
